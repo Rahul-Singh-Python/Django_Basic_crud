@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edit</title>
+	{% load staticfiles %}
+</head>
+<body>
+	<center>
+            <table border="1">
+                    <form action="/update/{{ a.id }}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <tr>
+                            <td>Name</td>
+                            <td><input type="text" name="name" value="{{a.name}}"></td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td><input type="email" name="email" value="{{a.email}}"></td>
+                        </tr>
+                        <tr>
+                            <td>Contact</td>
+                            <td><input type="number" name="contact" value="{{a.contact}}"></td>
+                        </tr>
+                        <tr>
+                            <td>Image</td>
+                            <td><input type="file" name="image" value="{{a.image.url}}"></td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            {% if a.gender == 'male' %}
+                            <td><input type="radio" name="gender" value="male" checked>Male
+                            <input type="radio" name="gender" value="female">Female
+                            {% elif a.gender == 'female' %}<td>
+                            <input type="radio" name="gender" value="male" >Male
+                            <input type="radio" name="gender" value="female" checked>Female</td>
+                            {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><input type="submit" value="Update"></td>
+                        </tr>
+                    </form>
+                </table>
+	</center>
+</body>
+</html>

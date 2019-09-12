@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration Form</title>
+	{% load staticfiles %}
+</head>
+<body>
+	<center><h1>Registration Form</h1></center>
+	<center>
+	<table border="1">
+        <form name="registration" id="f" action="/save/" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <tr>
+                <td>Name</td>
+                <td><input type="text" name="name"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="email" name="email"></td>
+            </tr>
+            <tr>
+                <td>Contact</td>
+                <td><input type="number" name="contact"></td>
+            </tr>
+            <tr>
+                <td>Image</td>
+                <td><input type="file" name="image"></td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td><input type="radio" name="gender" value="male">Male
+                <input type="radio" name="gender" value="female">Female
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Save"></td>
+            </tr>
+        </form>
+    </table>
+    <a href="/fetch/">Show Record</a></br>
+	</center>
+</body>
+
+
+<script type="text/javascript" src="{% static 'js/jq/jq.js' %}"></script>
+     <script type="text/javascript" src="{% static 'jq/jqv.js' %}"></script>   
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#f").validate({
+                   rules:
+                   {
+                       name:
+                       {
+                         required:true,  
+                       },
+                       email:
+                       {
+                         required:true,
+                         email:true,  
+                       },
+                       contact:
+                       {
+                           required:true,
+                           number:true,  
+                           minlength:10,
+                           maxlength:10,
+                       },
+                       image:
+                       {
+                           required:true,
+                       }
+                       gender:
+                       {
+                           required:true,
+                       }
+                   },                  
+                   messages:
+                   {
+                       name:
+                       {
+                         required:"Please Enter Name",  
+                       },
+                       email:
+                       {
+                         required:"***Please Enter Email Id***",  
+                         email:"***Please Enter Proper Email Id***",  
+                       },
+                       contact:
+                       {
+                         required:"Please Enter Contact",  
+                       },
+                       image:
+                       {
+                         required:"Please  Select Image",  
+                       },
+                       gender:
+                       {
+                         required:"Please Select Gender",  
+                       },
+
+                   },
+                });
+            });
+        </script>
+        <style type="">
+            label.error
+            {
+                color:red;
+            }
+            input.error
+            {
+                color:red;
+            }
+            input.valid
+            {
+                color:green;
+            }
+        </style>
+
+</html>

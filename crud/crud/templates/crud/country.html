@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration Form</title>
+  {% load staticfiles %}
+</head>
+<body>
+  <center><h1>Country Add</h1></center>
+  <center>
+  <table border="1">
+        <form name="registration" id="f" action="/save/" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <tr>
+                <td>Country Name</td>
+                <td><input type="text" name="country_name"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Add"></td>
+            </tr>
+        </form>
+    </table>
+  </center>
+</body>
+</html>

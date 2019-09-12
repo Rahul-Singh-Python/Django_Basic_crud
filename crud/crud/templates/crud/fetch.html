@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Record</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
+
+</head>
+<body>
+<a href="/register/">New Register</a>
+<center><h1>Show Details</h1></center>
+<center>
+	Search
+	<input id="myInput" type="text" placeholder="Search.." height="100">
+</center><br>
+<center>
+	<table>
+		<thead>
+		    <tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Contact</th>
+				<th>Image</th>
+				<th>Gender</th>
+				<th>Actions</th>
+				<th><input type="checkbox" name=""></th>
+			</tr>
+		</thead>
+		<tbody id="myTable">
+	  		{% for i in data %}
+				<tr>
+					<td>{{i.id}}</td>
+					<td>{{ i.name }}</td>
+					<td>{{ i.email }}</td>
+					<td>{{i.contact}}</td>
+					<td width="200"><img src="{{ i.image.url}}" width="200" height="50"></td>
+					<td>{{ i.gender }}</td>
+					<td width="150">
+						<a href="/delete/{{ i.id }}">Delete</a>
+						<a href="/edit/{{i.id}}">Update</a>
+					</td>
+					<td width="10">
+						<input type="checkbox" name="">
+					</td>
+				</tr>
+			{% endfor %}
+  		</tbody>
+		
+	</table>
+	
+</center>
+</body>
+
+</html>
